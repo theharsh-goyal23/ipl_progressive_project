@@ -1,5 +1,6 @@
 package com.wecp.progressive.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.wecp.progressive.dao.MatchDAO;
@@ -13,29 +14,29 @@ public class MatchServiceImplJdbc implements MatchService {
     }
 
     @Override
-    public Integer addMatch(Match match) {
+    public Integer addMatch(Match match) throws SQLException{
+        return matchDAO.addMatch(match);
+    }
+
+    @Override
+    public void deleteMatch(int matchId)throws SQLException {
+        matchDAO.deleteMatch(matchId);
+    }
+
+    @Override
+    public List<Match> getAllMatches()throws SQLException {
         
-        return -1;
+        return matchDAO.getAllMatches();
     }
 
     @Override
-    public void deleteMatch(int matchId) {
-        
+    public Match getMatchById(int matchId) throws SQLException{
+        return matchDAO.getMatchById(matchId);
     }
 
     @Override
-    public List<Match> getAllMatches() {
-        
-        return null;
-    }
-
-    @Override
-    public Match getMatchById(int matchId) {
-        return null;
-    }
-
-    @Override
-    public void updateMatch(Match match) {
+    public void updateMatch(Match match) throws SQLException{
+        matchDAO.updateMatch(match);
 
     }
 

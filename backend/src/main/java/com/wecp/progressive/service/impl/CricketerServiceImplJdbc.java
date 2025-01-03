@@ -1,5 +1,7 @@
 package com.wecp.progressive.service.impl;
 
+import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 
 import com.wecp.progressive.dao.CricketerDAO;
@@ -17,30 +19,37 @@ public class CricketerServiceImplJdbc implements CricketerService {
     
 
     @Override
-    public Integer addCricketer(Cricketer cricketer) {
+    public Integer addCricketer(Cricketer cricketer)throws SQLException {
         
-        return -1;
+        return cricketerDAO.addCricketer(cricketer);
+
     }
 
     @Override
-    public List<Cricketer> getAllCricketers() {
+    public List<Cricketer> getAllCricketers() throws SQLException{
         
-        return List.of();
+       return cricketerDAO.getAllCricketers();
     }
 
     @Override
-    public List<Cricketer> getAllCricketersSortedByExperience() {
+    public List<Cricketer> getAllCricketersSortedByExperience() throws SQLException{
         
-        return List.of();
+        List<Cricketer> sortedCricketers = cricketerDAO.getAllCricketers();
+        if(!sortedCricketers.isEmpty()){
+            sortedCricketers.sort(Comparator.comparing(Cricketer::getExperience));
+        }
+        return sortedCricketers;
     }
 
-    public void updateCricketer(Cricketer cricketer){
+    public void updateCricketer(Cricketer cricketer)throws SQLException{
+        cricketerDAO.updateCricketer(cricketer);
 
     }
-    public void deleteCricketer(int cricketerId){
+    public void deleteCricketer(int cricketerId)throws SQLException{
+        cricketerDAO.deleteCricketer(cricketerId);
 
     }
-    public Cricketer getCricketerById(int cricketerId){
-        return null;
+    public Cricketer getCricketerById(int cricketerId)throws SQLException{
+        return cricketerDAO.getCricketerById(cricketerId);
     }
 }

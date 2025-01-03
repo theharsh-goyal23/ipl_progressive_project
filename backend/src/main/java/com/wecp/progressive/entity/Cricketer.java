@@ -8,10 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-// @Entity
+@Entity
 public class Cricketer implements Comparable<Cricketer> {
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cricketerId;
     private int teamId;
     private String cricketerName;
